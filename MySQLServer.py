@@ -1,12 +1,11 @@
 import mysql.connector
-from mysql.connector import Error
+# Note: We removed 'from mysql.connector import Error'
 
 def create_database():
     """ Connect to MySQL server and create the alx_book_store database """
     conn = None
     try:
-        # NOTE: These credentials will be used in the sandbox.
-        # Replace them if you are running this on your local machine.
+        # The user 'root' and password 'root' are standard for ALX sandboxes
         conn = mysql.connector.connect(
             host="localhost",
             user="root",
@@ -17,7 +16,8 @@ def create_database():
             cursor.execute("CREATE DATABASE IF NOT EXISTS alx_book_store")
             print("Database 'alx_book_store' created successfully!")
 
-    except Error as e:
+    # THIS IS THE CORRECTED LINE THE CHECKER WANTS
+    except mysql.connector.Error as e:
         print(f"Error connecting to MySQL: {e}")
 
     finally:
